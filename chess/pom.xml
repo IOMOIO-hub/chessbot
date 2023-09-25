@@ -54,7 +54,7 @@
           <configuration>
             <archive>
               <manifest>
-                <mainClass>oop.chatbot.App</mainClass>
+                <mainClass>oop.chessbot.App</mainClass>
               </manifest>
             </archive>
           </configuration>
