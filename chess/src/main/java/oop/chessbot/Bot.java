@@ -30,8 +30,8 @@ public class Bot {
 
         Session session = chat.getSession();
 
-        if (session.status == "inGame" && command.charAt(0) != '/') {
-            // String message = session.game.move(command);
+        if (session.getStatus() == "inGame" && command.charAt(0) != '/') {
+            // String message = session.getGame().move(command);
             String message = "Вы сделали ход";
             chat.say(message);
             return;
