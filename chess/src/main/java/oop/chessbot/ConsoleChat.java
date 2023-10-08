@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ConsoleChat implements Chat {
 
     private String username;
-    public Session session;
+    private Session session;
 
     public ConsoleChat(String username) {
         this.username = username;

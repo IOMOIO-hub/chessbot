@@ -1,11 +1,19 @@
 package oop.chessbot;
 
 public class Session {
-    public String status;
-    public Game game;
+    private String status;
+    private Game game;
 
     public Session() {
         this.status = "default";
+    }
+
+    public Game getGame() {
+        return this.game;
+    }
+
+    public String getStatus() {
+        return this.status;
     }
 
     public void newGame() {
