@@ -123,4 +123,18 @@ public class Game {
         }
         return false;
     }
+
+    public String printBoard(){
+        String result = " ABCDEFGH \n";
+        for (int i = 7; i > -1; i--){
+            result += ((Integer)(i + 1)).toString();
+            for (int j = 0; j < 8; j++){
+                result += board[i][j].getType();
+            }
+            result += ((Integer)(i + 1)).toString();
+            result += "\n";
+        }
+        result += " ABCDEFGH";
+        return result;
+    }
 }
