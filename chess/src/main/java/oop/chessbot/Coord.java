@@ -12,6 +12,11 @@ public class Coord {
         this.x = x;
         this.y = y;
     }
+
+    Coord(String str){
+        this.x = str.charAt(0) - 'a';
+        this.y = str.charAt(1) - '0' - 1;
+    }
     
     public int getX(){
         return this.x;
@@ -27,5 +32,9 @@ public class Coord {
 
     public void setY(int y){
         this.y = y;
+    }
+
+    public String toString() {
+        return (char)(x + 'a') + "" + (char)(y + '0' + 1) + " ";
     }
 }
