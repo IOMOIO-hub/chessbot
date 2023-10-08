@@ -68,22 +68,130 @@ public class Game {
 
             return result;
         }
-        public char getType()
-        {
+        public char getType(){
            return 'p';
         }
     }
     
     private class Knight extends Figure{
         
+        public ArrayList<Coord> possibleTurns(){
+            ArrayList<Coord> result = new ArrayList<Coord>();
+            Coord placement = this.getPlacement();
+            int x = placement.getX(), y = placement.getY();
+            int[][] knightsTurns = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
+            
+            for (int i = 0; i < 8; i++){
+                int newX = x + knightsTurns[i][0], newY = y + knightsTurns[i][1];
+                if ((board[newX][newY] == null) && (newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7)){
+                    result.add(new Coord(newX, newY));
+                }
+            }
+            
+            return result;
+        }
+
+        public char getType(){
+                return 'k';
+        }
+
     }
     
     private class Bishop extends Figure{
+        public ArrayList<Coord> possibleTurns(){
+            ArrayList<Coord> result = new ArrayList<Coord>();
+            Coord placement = this.getPlacement();
+            int x = placement.getX(), y = placement.getY();
+            for (int i = x + 1, j = y + 1; i < 8 && j < 8; i++, j++){
+                if (board[i][j] == null){
+                    result.add(new Coord(i, j));
+                }
+                else{
+                    break;
+                }
+            }
 
+            for (int i = x + 1, j = y - 1; i < 8 && j > -1; i++, j--){
+                if (board[i][j] == null){
+                    result.add(new Coord(i, j));
+                }
+                else{
+                    break;
+                }
+            }
+
+            for (int i = x - 1, j = y - 1; i > -1 && j > -1; i--, j--){
+                if (board[i][j] == null){
+                    result.add(new Coord(i, j));
+                }
+                else{
+                    break;
+                }
+            }
+
+            for (int i = x - 1, j = y + 1; i > -1 && j < 8; i--, j++){
+                if (board[i][j] == null){
+                    result.add(new Coord(i, j));
+                }
+                else{
+                    break;
+                }
+            }
+
+            return result;
+        }
+        
+        public char getType(){
+            return 'b';
+        }
     }
     
     private class Rook extends Figure{
+        public ArrayList<Coord> possibleTurns(){
+            ArrayList<Coord> result = new ArrayList<Coord>();
+            Coord placement = this.getPlacement();
+            int x = placement.getX(), y = placement.getY();
+            for (int tempX = x + 1; tempX < 8; tempX++){
+                if (board[tempX][y] == null){
+                    result.add(new Coord(tempX, y));
+                }
+                else{
+                    break;
+                }
+            }
 
+            for (int tempY = y - 1; tempY > -1; tempY--){
+                if (board[x][tempY] == null){
+                    result.add(new Coord(x, tempY));
+                }
+                else{
+                    break;
+                }
+            }
+
+            for (int tempX = x - 1; tempX > -1; tempX--){
+                if (board[tempX][y] == null){
+                    result.add(new Coord(tempX, y));
+                }
+                else{
+                    break;
+                }
+            }
+
+            for (int tempY = y + 1; tempY < 8; tempY++){
+                if (board[x][tempY] == null){
+                    result.add(new Coord(x, tempY));
+                }
+                else{
+                    break;
+                }
+            }
+
+            return result;
+        }
+        public char getType(){
+            return 'r';
+        }
     }
     
     private class Queen extends Figure{
