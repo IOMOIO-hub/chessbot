@@ -1,14 +1,42 @@
 package oop.chessbot;
+
 import java.util.ArrayList;
 
 public class Game {
     
+    private Figure[][] board = new Figure[8][8];
     private String status = "figureSelection";
+
+    public Game() {
+        loadBoard();
+    }
+
+    private void loadBoard() {
+        for (int x = 0, y = 1; x < 8; x++)
+            board[x][y] = new Pawn("White", new Coord(x, y));
+
+        board[0][0] = new Rook("White", new Coord(0, 0));
+        board[1][0] = new Knight("White", new Coord(1, 0));
+        board[2][0] = new Bishop("White", new Coord(2, 0));
+        board[3][0] = new Queen("White", new Coord(3, 0));
+        board[4][0] = new King("White", new Coord(4, 0));
+        board[5][0] = new Bishop("White", new Coord(5, 0));
+        board[6][0] = new Knight("White", new Coord(6, 0));
+        board[7][0] = new Rook("White", new Coord(7, 0));
+    }
     
-    private class Figure{
+    public String getStatus() {
+        return this.status;
+    }
+    private class Figure {
 
         private String color;
-        private Coord placement = new Coord();
+        private Coord placement;
+
+        public Figure(String color, Coord placement) {
+            this.color = color;
+            this.placement = placement;
+        }
 
         public Coord getPlacement(){
             return this.placement;
@@ -22,60 +50,57 @@ public class Game {
             return '_';
         }
         
-        public ArrayList<Coord> possibleTurns(){
+        public ArrayList<Coord> possibleTurns() {
             return new ArrayList<Coord>();
-        }
-
-        public void move(){
-
         }
     }
 
-    Figure[][] board = new Figure[8][8];
+    private class Pawn extends Figure {
 
-    private class Pawn extends Figure{
+        public Pawn(String color, Coord placement) {
+            super(color, placement);
+        }
         
         private boolean notMoved = true;
         
-        public ArrayList<Coord> possibleTurns(){
+        public ArrayList<Coord> possibleTurns() {
             ArrayList<Coord> result = new ArrayList<Coord>();
             Coord placement = this.getPlacement();
             int x = placement.getX(), y = placement.getY();
 
             //white figures are placed at the the bottom and black at the top
             if (this.getColor() == "White"){
-                
                 if ((y <= 7) && (board[x][y + 1] == null)){
+                    
                     result.add(new Coord(x, y + 1));
 
                     if (notMoved && (board[x][y + 2] == null)){
                         result.add(new Coord(x, y + 2));
-
                     }
                 }
             }
-            else{
+            else if ((y >= 2) && (board[x][y - 1] == null)) {
+                result.add(new Coord(x, y - 1));
 
-                if ((y >= 2) && (board[x][y - 1] == null)){
-                    result.add(new Coord(x, y - 1));
-
-                    if (notMoved && (board[x][y - 2] == null)){
-                        result.add(new Coord(x, y - 2));
-
-                    }
+                if (notMoved && (board[x][y - 2] == null)){
+                    result.add(new Coord(x, y - 2));
                 }
             }
 
             return result;
         }
         public char getType(){
-           return 'p';
+           return '♙';
         }
     }
     
-    private class Knight extends Figure{
+    private class Knight extends Figure {
+
+        public Knight(String color, Coord placement) {
+            super(color, placement);
+        }
         
-        public ArrayList<Coord> possibleTurns(){
+        public ArrayList<Coord> possibleTurns() {
             ArrayList<Coord> result = new ArrayList<Coord>();
             Coord placement = this.getPlacement();
             int x = placement.getX(), y = placement.getY();
@@ -83,7 +108,7 @@ public class Game {
             
             for (int i = 0; i < 8; i++){
                 int newX = x + knightsTurns[i][0], newY = y + knightsTurns[i][1];
-                if ((board[newX][newY] == null) && (newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7)){
+                if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && (board[newX][newY] == null)){
                     result.add(new Coord(newX, newY));
                 }
             }
@@ -92,12 +117,17 @@ public class Game {
         }
 
         public char getType(){
-                return 'k';
+            return '♘';
         }
 
     }
     
-    private class Bishop extends Figure{
+    private class Bishop extends Figure {
+
+        public Bishop(String color, Coord placement) {
+            super(color, placement);
+        }
+
         public ArrayList<Coord> possibleTurns(){
             ArrayList<Coord> result = new ArrayList<Coord>();
             Coord placement = this.getPlacement();
@@ -142,11 +172,16 @@ public class Game {
         }
         
         public char getType(){
-            return 'b';
+            return '♗';
         }
     }
     
-    private class Rook extends Figure{
+    private class Rook extends Figure {
+
+        public Rook(String color, Coord placement) {
+            super(color, placement);
+        }
+
         public ArrayList<Coord> possibleTurns(){
             ArrayList<Coord> result = new ArrayList<Coord>();
             Coord placement = this.getPlacement();
@@ -190,11 +225,16 @@ public class Game {
             return result;
         }
         public char getType(){
-            return 'r';
+            return '♖';
         }
     }
     
-    private class Queen extends Figure{
+    private class Queen extends Figure {
+
+        public Queen(String color, Coord placement) {
+            super(color, placement);
+        }
+
         public ArrayList<Coord> possibleTurns(){
             ArrayList<Coord> result = new ArrayList<Coord>();
             Coord placement = this.getPlacement();
@@ -276,11 +316,16 @@ public class Game {
         }
 
         public char getType(){
-            return 'q';
+            return '♕';
         }
     }
     
-    private class King extends Figure{
+    private class King extends Figure {
+
+        public King(String color, Coord placement) {
+            super(color, placement);
+        }
+        
         public ArrayList<Coord> possibleTurns(){
             ArrayList<Coord> result = new ArrayList<Coord>();
             Coord placement = this.getPlacement();
@@ -298,51 +343,59 @@ public class Game {
         }
 
         public char getType(){
-                return 'K';
+            return '♔';
         }
     }
 
     private Figure selectedFigure;
 
-    public ArrayList<Coord> select(Coord placement){
+    public ArrayList<Coord> select(Coord placement) {
         int x = placement.getX(), y = placement.getY();
         Figure figure = board[x][y];
         ArrayList<Coord> possibleTurns = figure.possibleTurns();
-        if (figure == null)
-            return null;
-        selectedFigure = figure;
-        if (possibleTurns.size() != 0)
-            status = "movementSelection";
-        return figure.possibleTurns();
         
+        if (figure == null || possibleTurns.size() == 0)
+            return new ArrayList<Coord>();
+
+        selectedFigure = figure;
+        status = "movementSelection";
+        return possibleTurns;
     }
-    public boolean move(Coord direction){
+
+    public boolean move(Coord direction) {
         ArrayList<Coord> possibleTurns = selectedFigure.possibleTurns();
-        if (possibleTurns.contains(direction)){
-            int curX = selectedFigure.placement.getX(), curY = selectedFigure.placement.getY();
-            int x = direction.getX(), y = direction.getY();
 
-            board[curX][curY] = null;
-            board[x][y] = selectedFigure;
-            selectedFigure.placement.setX(x);
-            selectedFigure.placement.setY(y);
+        for (Coord turn: possibleTurns) {
+            if (turn.equals(direction)) {
+                int curX = selectedFigure.placement.getX(), curY = selectedFigure.placement.getY();
+                int x = direction.getX(), y = direction.getY();
 
-            return true;
+                board[curX][curY] = null;
+                board[x][y] = selectedFigure;
+                selectedFigure.placement.setX(x);
+                selectedFigure.placement.setY(y);
+
+                status = "figureSelection";
+
+                return true;
+            }
         }
         return false;
     }
 
-    public String printBoard(){
-        String result = " ABCDEFGH \n";
-        for (int i = 7; i > -1; i--){
-            result += ((Integer)(i + 1)).toString();
-            for (int j = 0; j < 8; j++){
-                result += board[i][j].getType();
+    public String printBoard() {
+        String result = "";
+        for (int y = 7; y > -1; y--){
+            result += ((Integer)(y + 1)).toString() + " ";
+            for (int x = 0; x < 8; x++) {
+                if (board[x][y] == null)
+                    result += "⬚";
+                else
+                    result += board[x][y].getType();
             }
-            result += ((Integer)(i + 1)).toString();
             result += "\n";
         }
-        result += " ABCDEFGH";
+        result += "   a  b  c  d  e  f  g  h";
         return result;
     }
 }

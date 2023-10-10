@@ -3,10 +3,6 @@ package oop.chessbot;
 public class Coord {
     private int x;
     private int y;
-    
-    Coord(){
-        
-    }
 
     Coord(int x, int y){
         this.x = x;
@@ -21,7 +17,6 @@ public class Coord {
     public int getX(){
         return this.x;
     }
-
     public int getY(){
         return this.y;
     }
@@ -29,12 +24,15 @@ public class Coord {
     public void setX(int x){
         this.x = x;
     }
-
     public void setY(int y){
         this.y = y;
     }
 
     public String toString() {
         return (char)(x + 'a') + "" + (char)(y + '0' + 1) + " ";
+    }
+
+    public boolean equals(Coord other) {
+        return this.x == other.x && this.y == other.y;
     }
 }
