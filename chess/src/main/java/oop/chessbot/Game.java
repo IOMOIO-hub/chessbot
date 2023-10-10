@@ -334,7 +334,7 @@ public class Game {
             
             for (int i = 0; i < 8; i++){
                 int newX = x + kingsTurns[i][0], newY = y + kingsTurns[i][1];
-                if ((board[newX][newY] == null) && (newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7)){
+                if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && (board[newX][newY] == null)){
                     result.add(new Coord(newX, newY));
                 }
             }
