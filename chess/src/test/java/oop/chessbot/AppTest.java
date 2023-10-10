@@ -15,10 +15,11 @@ public class AppTest {
 
         System.setOut(new PrintStream(outContent));
 
-        Bot bot = Bot.getInstance();
-        Chat chat = bot.createChat("username");
-        
-        bot.execute("/help", "username");
+        App app = new App();
+        App.createSession(0L, new ConsoleBot());
+
+        Executor executor = Executor.getInstance();
+        executor.execute("/help", 0L);
 
         System.setOut(originalOut);
         

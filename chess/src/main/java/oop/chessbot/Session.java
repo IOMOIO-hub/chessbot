@@ -1,11 +1,20 @@
 package oop.chessbot;
 
 public class Session {
-    private String status;
+
+    private Long id;
+    private Bot bot;
+
+    private String status = "default";
     private Game game;
 
-    public Session() {
-        this.status = "default";
+    public Session(Long id, Bot bot) {
+        this.id = id;
+        this.bot = bot;
+    }
+
+    public Long getId() {
+        return this.id;
     }
 
     public Game getGame() {
@@ -16,8 +25,15 @@ public class Session {
         return this.status;
     }
 
+    public void send(String message) {
+        this.bot.send(this.id, message);
+    }
+    public void sendBoard() {
+        this.bot.send(this.id, this.game.printBoard());
+    }
+
     public void newGame() {
         this.game = new Game();
-        this.status = "inGame";
+        this.status = "game";
     }
 }
