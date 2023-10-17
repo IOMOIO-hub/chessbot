@@ -9,12 +9,12 @@ public class TelegramBot extends TelegramLongPollingBot implements Bot {
 
     @Override
     public String getBotUsername() {
-        return "ultraChessBot";
+        return System.getenv("BOT_USERNAME");
     }
 
     @Override
     public String getBotToken() {
-        return "";
+        return System.getenv("BOT_TOKEN");
     }
 
     @Override
