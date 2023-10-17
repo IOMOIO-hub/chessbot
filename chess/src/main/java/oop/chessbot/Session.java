@@ -1,5 +1,7 @@
 package oop.chessbot;
 
+import oop.chess.Game;
+
 public class Session {
 
     private Long id;

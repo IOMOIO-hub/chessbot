@@ -2,6 +2,8 @@ package oop.chessbot;
 
 import java.util.ArrayList;
 
+import oop.chess.Coord;
+
 public class Executor {
 
     private static Executor INSTANCE;
@@ -21,7 +23,7 @@ public class Executor {
         if (session.getStatus() == "game" && command.charAt(0) != '/') {
             switch (session.getGame().getStatus()) {
                 case "figureSelection": {
-                    ArrayList<Coord> possibleTurns = session.getGame().select(new Coord(command));
+                    ArrayList<Coord> possibleTurns = session.getGame().select(command);
                     if (possibleTurns.size() == 0) {
                         session.send("Вы не можете ходить этой фигурой");
                         break;
@@ -34,7 +36,7 @@ public class Executor {
                     break;
                 }
                 case "movementSelection": {
-                    if (session.getGame().move(new Coord(command))) {
+                    if (session.getGame().move(command)) {
                         session.sendBoard();
                     }
                     else {

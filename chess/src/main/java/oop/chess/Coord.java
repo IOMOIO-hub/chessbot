@@ -1,4 +1,4 @@
-package oop.chessbot;
+package oop.chess;
 
 public class Coord {
     private int x;
