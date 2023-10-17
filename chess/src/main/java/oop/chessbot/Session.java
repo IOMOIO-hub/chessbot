@@ -29,7 +29,7 @@ public class Session {
         this.bot.send(this.id, message);
     }
     public void sendBoard() {
-        this.bot.send(this.id, this.game.printBoard());
+        this.bot.send(this.id, this.game.boardToString());
     }
 
     public void newGame() {

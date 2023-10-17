@@ -383,7 +383,7 @@ public class Game {
         return false;
     }
 
-    public String printBoard() {
+    public String boardToString() {
         String result = "";
         for (int y = 7; y > -1; y--){
             result += ((Integer)(y + 1)).toString() + " ";
