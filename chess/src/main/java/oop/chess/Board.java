@@ -46,7 +46,7 @@ public class Board {
 
     public String toString() {
         String result = "";
-        for (int y = 7; y > -1; y--){
+        for (int y = 7; y > -1; y--) {
             result += ((Integer)(y + 1)).toString() + "  ";
             for (int x = 0; x < 8; x++) {
                 Figure currentFigure = board[x][y];

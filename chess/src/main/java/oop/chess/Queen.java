@@ -8,13 +8,13 @@ class Queen extends Figure {
         super(color, position);
     }
 
-    public ArrayList<Position> possibleMoves(Board board){
+    public ArrayList<Position> possibleMoves(Board board) {
         ArrayList<Position> result = new ArrayList<Position>();
         Position position = this.getPosition();
         int x = position.getX(), y = position.getY();
 
         for (int tempX = x + 1; tempX < 8; tempX++){
-            if (board.at(tempX, y) == null){
+            if (board.at(tempX, y) == null) {
                 result.add(new Position(tempX, y));
             }
             else{
@@ -22,8 +22,8 @@ class Queen extends Figure {
             }
         }
 
-        for (int tempY = y - 1; tempY > -1; tempY--){
-            if (board.at(x, tempY) == null){
+        for (int tempY = y - 1; tempY > -1; tempY--) {
+            if (board.at(x, tempY) == null) {
                 result.add(new Position(x, tempY));
             }
             else{
@@ -31,8 +31,8 @@ class Queen extends Figure {
             }
         }
 
-        for (int tempX = x - 1; tempX > -1; tempX--){
-            if (board.at(tempX, y) == null){
+        for (int tempX = x - 1; tempX > -1; tempX--) {
+            if (board.at(tempX, y) == null) {
                 result.add(new Position(tempX, y));
             }
             else{
@@ -40,8 +40,8 @@ class Queen extends Figure {
             }
         }
 
-        for (int tempY = y + 1; tempY < 8; tempY++){
-            if (board.at(x, tempY) == null){
+        for (int tempY = y + 1; tempY < 8; tempY++) {
+            if (board.at(x, tempY) == null) {
                 result.add(new Position(x, tempY));
             }
             else{
@@ -49,8 +49,8 @@ class Queen extends Figure {
             }
         }
 
-        for (int tempX = x + 1, tempY = y + 1; tempX < 8 && tempY < 8; tempX++, tempY++){
-            if (board.at(tempX, tempY) == null){
+        for (int tempX = x + 1, tempY = y + 1; tempX < 8 && tempY < 8; tempX++, tempY++) {
+            if (board.at(tempX, tempY) == null) {
                 result.add(new Position(tempX, tempY));
             }
             else{
@@ -58,8 +58,8 @@ class Queen extends Figure {
             }
         }
 
-        for (int tempX = x + 1, tempY = y - 1; tempX < 8 && tempY > -1; tempX++, tempY--){
-            if (board.at(tempX, tempY) == null){
+        for (int tempX = x + 1, tempY = y - 1; tempX < 8 && tempY > -1; tempX++, tempY--) {
+            if (board.at(tempX, tempY) == null) {
                 result.add(new Position(tempX, tempY));
             }
             else{
@@ -67,8 +67,8 @@ class Queen extends Figure {
             }
         }
 
-        for (int tempX = x - 1, tempY = y - 1; tempX > -1 && tempY > -1; tempX--, tempY--){
-            if (board.at(tempX, tempY) == null){
+        for (int tempX = x - 1, tempY = y - 1; tempX > -1 && tempY > -1; tempX--, tempY--) {
+            if (board.at(tempX, tempY) == null) {
                 result.add(new Position(tempX, tempY));
             }
             else{
@@ -76,8 +76,8 @@ class Queen extends Figure {
             }
         }
 
-        for (int tempX = x - 1, tempY = y + 1; tempX > -1 && tempY < 8; tempX--, tempY++){
-            if (board.at(tempX, tempY) == null){
+        for (int tempX = x - 1, tempY = y + 1; tempX > -1 && tempY < 8; tempX--, tempY++) {
+            if (board.at(tempX, tempY) == null) {
                 result.add(new Position(tempX, tempY));
             }
             else{
@@ -88,7 +88,7 @@ class Queen extends Figure {
         return result;
     }
 
-    public char getType(){
+    public char getType() {
         return '♕';
     }
 }

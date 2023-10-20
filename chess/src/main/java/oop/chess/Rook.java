@@ -8,7 +8,7 @@ class Rook extends Figure {
         super(color, position);
     }
 
-    public ArrayList<Position> possibleMoves(Board board){
+    public ArrayList<Position> possibleMoves(Board board) {
         ArrayList<Position> result = new ArrayList<Position>();
         Position position = this.getPosition();
         int x = position.getX(), y = position.getY();
@@ -21,7 +21,7 @@ class Rook extends Figure {
             }
         }
 
-        for (int tempY = y - 1; tempY > -1; tempY--){
+        for (int tempY = y - 1; tempY > -1; tempY--) {
             if (board.at(x, tempY) == null){
                 result.add(new Position(x, tempY));
             }
@@ -30,7 +30,7 @@ class Rook extends Figure {
             }
         }
 
-        for (int tempX = x - 1; tempX > -1; tempX--){
+        for (int tempX = x - 1; tempX > -1; tempX--) {
             if (board.at(tempX, y) == null){
                 result.add(new Position(tempX, y));
             }
@@ -39,7 +39,7 @@ class Rook extends Figure {
             }
         }
 
-        for (int tempY = y + 1; tempY < 8; tempY++){
+        for (int tempY = y + 1; tempY < 8; tempY++) {
             if (board.at(x, tempY) == null){
                 result.add(new Position(x, tempY));
             }
@@ -50,7 +50,7 @@ class Rook extends Figure {
 
         return result;
     }
-    public char getType(){
+    public char getType() {
         return '♖';
     }
 }
