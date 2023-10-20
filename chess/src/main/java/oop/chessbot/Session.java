@@ -18,20 +18,21 @@ public class Session {
     public Long getId() {
         return this.id;
     }
-
     public Game getGame() {
         return this.game;
     }
-
     public String getStatus() {
         return this.status;
     }
 
-    public void send(String message) {
+    public void send(String str) {
+        this.bot.send(this.id, new Message(str));
+    }
+    public void send(Message message) {
         this.bot.send(this.id, message);
     }
     public void sendBoard() {
-        this.bot.send(this.id, this.game.getBoard().toString());
+        this.bot.send(this.id, new Message(this.game.getBoard().toString()));
     }
 
     public void newGame() {

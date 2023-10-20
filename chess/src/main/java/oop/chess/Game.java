@@ -1,6 +1,7 @@
 package oop.chess;
 
 import java.util.ArrayList;
+import oop.chessbot.Message;
 
 public class Game {
     
@@ -14,7 +15,6 @@ public class Game {
     public Board getBoard() {
         return this.board;
     }
-    
     public String getStatus() {
         return this.status;
     }
@@ -26,23 +26,23 @@ public class Game {
         ArrayList<Position> possibleMoves = figure.possibleMoves(board);
         
         if (figure == null || possibleMoves.size() == 0)
-            return new ArrayList<Position>();
+            return null;
 
         this.selectedFigure = figure;
         this.status = "movementSelection";
 
         return possibleMoves;
     }
-    public String select(String str) {
+    public Message select(String str) {
         ArrayList<Position> possibleMoves = select(new Position(str));
-        if (possibleMoves.size() == 0) {
-            return "Вы не можете ходить этой фигурой";
+        if (possibleMoves == null) {
+            return new Message("Вы не можете ходить этой фигурой");
         }
-        String message = "Возможные ходы: ";
+        ArrayList<String> keyboard = new ArrayList<String>();
         for (Position move: possibleMoves)
-            message += move.toString();
-            
-        return message;
+            keyboard.add(move.toString());
+
+        return new Message("Выберите ход", keyboard);
     }
 
     public boolean move(Position destination) {

@@ -21,7 +21,7 @@ public class ConsoleBot implements Bot{
             }
         }
     }
-    public void send(Long id, String message) {
-        System.out.println(message);
+    public void send(Long id, Message message) {
+        System.out.println(message.text);
     }
 }

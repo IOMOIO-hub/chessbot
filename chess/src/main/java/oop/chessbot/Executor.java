@@ -14,12 +14,12 @@ public class Executor {
 
     public void execute(String command, Long id) {
 
-        Session session = App.getSession(id);
+        Session session = SessionManager.getSession(id);
 
         if (session.getStatus() == "game" && command.charAt(0) != '/') {
             switch (session.getGame().getStatus()) {
                 case "figureSelection": {
-                    String message = session.getGame().select(command);
+                    Message message = session.getGame().select(command);
                     session.send(message);
                     break;
                 }
@@ -33,7 +33,6 @@ public class Executor {
                     break;
                 }
             }
-
             return;
         }
 

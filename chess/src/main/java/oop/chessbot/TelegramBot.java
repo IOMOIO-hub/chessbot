@@ -1,8 +1,13 @@
 package oop.chessbot;
 
+import java.util.ArrayList;
+
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardButton;
+import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class TelegramBot extends TelegramLongPollingBot implements Bot {
@@ -28,12 +33,45 @@ public class TelegramBot extends TelegramLongPollingBot implements Bot {
         }
     }
 
-    public void send(Long id, String message){
+    public void send(Long id, String message) {
         SendMessage sendMessage = SendMessage.builder().chatId(id.toString()).text(message).build();
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void send(Long id, Message message) {
+        SendMessage sendMessage = SendMessage.builder().chatId(id.toString()).text(message.text).build();
+        
+        if (message.keyboard != null)
+            sendMessage.setReplyMarkup(buildKeyboard(message.keyboard));
+
+        try {
+            execute(sendMessage);
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    private ReplyKeyboardMarkup buildKeyboard(ArrayList<String> buttons) {
+
+        ReplyKeyboardMarkup keyboard = new ReplyKeyboardMarkup();
+        keyboard.setResizeKeyboard(true);
+        keyboard.setOneTimeKeyboard(false);
+
+        ArrayList<KeyboardRow> keyboardRows = new ArrayList<>();
+
+        KeyboardRow keyboardRow = new KeyboardRow();
+        for (int i = 0; i < buttons.size(); i++) {
+            if (i % 6 == 0) {
+                keyboardRow = new KeyboardRow();
+                keyboardRows.add(keyboardRow);
+            }
+            keyboardRow.add(new KeyboardButton(buttons.get(i)));
+        }
+
+        keyboard.setKeyboard(keyboardRows);
+        return keyboard;
     }
 }
