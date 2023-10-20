@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 class Knight extends Figure {
 
-        public Knight(String color, Coord placement) {
-            super(color, placement);
+        public Knight(String color, Position position) {
+            super(color, position);
         }
         
-        public ArrayList<Coord> possibleTurns(Figure[][] board) {
-            ArrayList<Coord> result = new ArrayList<Coord>();
-            Coord placement = this.getPlacement();
-            int x = placement.getX(), y = placement.getY();
+        public ArrayList<Position> possibleMoves(Board board) {
+            ArrayList<Position> result = new ArrayList<Position>();
+            Position position = this.getPosition();
+            int x = position.getX(), y = position.getY();
             int[][] knightsTurns = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
             
             for (int i = 0; i < 8; i++){
                 int newX = x + knightsTurns[i][0], newY = y + knightsTurns[i][1];
-                if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && (board[newX][newY] == null)){
-                    result.add(new Coord(newX, newY));
+                if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && (board.at(newX, newY) == null)){
+                    result.add(new Position(newX, newY));
                 }
             }
             

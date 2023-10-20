@@ -4,22 +4,25 @@ import java.util.ArrayList;
 
 abstract class Figure {
 
-    private String color;
-    private Coord placement;
+    private final String color;
+    private Position position;
 
-    public Figure(String color, Coord placement) {
+    public Figure(String color, Position position) {
         this.color = color;
-        this.placement = placement;
+        this.position = position;
     }
 
-    public Coord getPlacement(){
-        return this.placement;
+    public Position getPosition() {
+        return this.position;
+    }
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-    public String getColor(){
+    public String getColor() {
         return this.color;
     }
 
     abstract public char getType();
-    abstract public ArrayList<Coord> possibleTurns(Figure[][] board);
+    abstract public ArrayList<Position> possibleMoves(Board board);
 }

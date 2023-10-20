@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 class Bishop extends Figure {
 
-    public Bishop(String color, Coord placement) {
-        super(color, placement);
+    public Bishop(String color, Position position) {
+        super(color, position);
     }
 
-    public ArrayList<Coord> possibleTurns(Figure[][] board){
-        ArrayList<Coord> result = new ArrayList<Coord>();
-        Coord placement = this.getPlacement();
-        int x = placement.getX(), y = placement.getY();
+    public ArrayList<Position> possibleMoves(Board board){
+        ArrayList<Position> result = new ArrayList<Position>();
+        Position position = this.getPosition();
+        int x = position.getX(), y = position.getY();
         for (int tempX = x + 1, tempY = y + 1; tempX < 8 && tempY < 8; tempX++, tempY++){
-            if (board[tempX][tempY] == null){
-                result.add(new Coord(tempX, tempY));
+            if (board.at(tempX, tempY) == null){
+                result.add(new Position(tempX, tempY));
             }
             else{
                 break;
@@ -22,8 +22,8 @@ class Bishop extends Figure {
         }
 
         for (int tempX = x + 1, tempY = y - 1; tempX < 8 && tempY > -1; tempX++, tempY--){
-            if (board[tempX][tempY] == null){
-                result.add(new Coord(tempX, tempY));
+            if (board.at(tempX, tempY) == null){
+                result.add(new Position(tempX, tempY));
             }
             else{
                 break;
@@ -31,8 +31,8 @@ class Bishop extends Figure {
         }
 
         for (int tempX = x - 1, tempY = y - 1; tempX > -1 && tempY > -1; tempX--, tempY--){
-            if (board[tempX][tempY] == null){
-                result.add(new Coord(tempX, tempY));
+            if (board.at(tempX, tempY) == null){
+                result.add(new Position(tempX, tempY));
             }
             else{
                 break;
@@ -40,8 +40,8 @@ class Bishop extends Figure {
         }
 
         for (int tempX = x - 1, tempY = y + 1; tempX > -1 && tempY < 8; tempX--, tempY++){
-            if (board[tempX][tempY] == null){
-                result.add(new Coord(tempX, tempY));
+            if (board.at(tempX, tempY) == null){
+                result.add(new Position(tempX, tempY));
             }
             else{
                 break;

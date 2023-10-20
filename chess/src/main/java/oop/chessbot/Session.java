@@ -31,7 +31,7 @@ public class Session {
         this.bot.send(this.id, message);
     }
     public void sendBoard() {
-        this.bot.send(this.id, this.game.boardToString());
+        this.bot.send(this.id, this.game.getBoard().toString());
     }
 
     public void newGame() {

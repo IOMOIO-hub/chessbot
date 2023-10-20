@@ -1,30 +1,34 @@
 package oop.chess;
 
-public class Coord {
+public class Position {
+    
     private int x;
     private int y;
 
-    Coord(int x, int y){
+    Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
-
-    Coord(String str){
+    Position(String str) {
         this.x = str.charAt(0) - 'a';
         this.y = str.charAt(1) - '0' - 1;
     }
     
-    public int getX(){
+    public int getX() {
         return this.x;
     }
-    public int getY(){
+    public int getY() {
         return this.y;
     }
 
-    public void setX(int x){
+    public void setX(int x) {
         this.x = x;
     }
-    public void setY(int y){
+    public void setY(int y) {
+        this.y = y;
+    }
+    public void setXY(int x, int y) {
+        this.x = x;
         this.y = y;
     }
 
@@ -32,7 +36,7 @@ public class Coord {
         return (char)(x + 'a') + "" + (char)(y + '0' + 1) + " ";
     }
 
-    public boolean equals(Coord other) {
+    public boolean equals(Position other) {
         return this.x == other.x && this.y == other.y;
     }
 }

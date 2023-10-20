@@ -13,12 +13,12 @@ public class App {
         TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
         botsApi.registerBot(App.telegramBot);
 
-        createSession(0L, App.consoleBot);
-        App.consoleBot.listen();
+        // createSession(0L, App.consoleBot);
+        // App.consoleBot.listen();
     }
 
     private static final TelegramBot telegramBot = new TelegramBot();
-    private static final ConsoleBot consoleBot = new ConsoleBot();
+    // private static final ConsoleBot consoleBot = new ConsoleBot();
 
     private static Map<Long, Session> sessions = new HashMap<Long, Session>();
 

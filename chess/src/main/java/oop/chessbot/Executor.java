@@ -1,9 +1,5 @@
 package oop.chessbot;
 
-import java.util.ArrayList;
-
-import oop.chess.Coord;
-
 public class Executor {
 
     private static Executor INSTANCE;
@@ -23,15 +19,7 @@ public class Executor {
         if (session.getStatus() == "game" && command.charAt(0) != '/') {
             switch (session.getGame().getStatus()) {
                 case "figureSelection": {
-                    ArrayList<Coord> possibleTurns = session.getGame().select(command);
-                    if (possibleTurns.size() == 0) {
-                        session.send("Вы не можете ходить этой фигурой");
-                        break;
-                    }
-                    String message = "Возможные ходы: ";
-                    for (Coord turn: possibleTurns)
-                        message += turn.toString();
-                    
+                    String message = session.getGame().select(command);
                     session.send(message);
                     break;
                 }

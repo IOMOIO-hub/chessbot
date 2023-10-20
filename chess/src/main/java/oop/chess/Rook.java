@@ -4,17 +4,17 @@ import java.util.ArrayList;
 
 class Rook extends Figure {
 
-    public Rook(String color, Coord placement) {
-        super(color, placement);
+    public Rook(String color, Position position) {
+        super(color, position);
     }
 
-    public ArrayList<Coord> possibleTurns(Figure[][] board){
-        ArrayList<Coord> result = new ArrayList<Coord>();
-        Coord placement = this.getPlacement();
-        int x = placement.getX(), y = placement.getY();
+    public ArrayList<Position> possibleMoves(Board board){
+        ArrayList<Position> result = new ArrayList<Position>();
+        Position position = this.getPosition();
+        int x = position.getX(), y = position.getY();
         for (int tempX = x + 1; tempX < 8; tempX++){
-            if (board[tempX][y] == null){
-                result.add(new Coord(tempX, y));
+            if (board.at(tempX, y) == null){
+                result.add(new Position(tempX, y));
             }
             else{
                 break;
@@ -22,8 +22,8 @@ class Rook extends Figure {
         }
 
         for (int tempY = y - 1; tempY > -1; tempY--){
-            if (board[x][tempY] == null){
-                result.add(new Coord(x, tempY));
+            if (board.at(x, tempY) == null){
+                result.add(new Position(x, tempY));
             }
             else{
                 break;
@@ -31,8 +31,8 @@ class Rook extends Figure {
         }
 
         for (int tempX = x - 1; tempX > -1; tempX--){
-            if (board[tempX][y] == null){
-                result.add(new Coord(tempX, y));
+            if (board.at(tempX, y) == null){
+                result.add(new Position(tempX, y));
             }
             else{
                 break;
@@ -40,8 +40,8 @@ class Rook extends Figure {
         }
 
         for (int tempY = y + 1; tempY < 8; tempY++){
-            if (board[x][tempY] == null){
-                result.add(new Coord(x, tempY));
+            if (board.at(x, tempY) == null){
+                result.add(new Position(x, tempY));
             }
             else{
                 break;
