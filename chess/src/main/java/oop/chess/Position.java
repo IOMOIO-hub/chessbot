@@ -33,7 +33,7 @@ public class Position {
     }
 
     public String toString() {
-        return (char)(x + 'a') + "" + (char)(y + '0' + 1) + " ";
+        return (char)(x + 'a') + "" + (char)(y + '0' + 1) + "";
     }
 
     public boolean equals(Position other) {
