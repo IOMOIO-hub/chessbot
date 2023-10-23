@@ -21,7 +21,7 @@ class Pawn extends Figure {
                     
                     result.add(new Position(x, y + 1));
 
-                    if (notMoved && (board.at(x, y + 2) == null)) {
+                    if (y == 1 && (board.at(x, y + 2) == null)) {
                         result.add(new Position(x, y + 2));
                     }
                 }
@@ -29,7 +29,7 @@ class Pawn extends Figure {
             else if ((y >= 2) && (board.at(x, y - 1) == null)) {
                 result.add(new Position(x, y - 1));
 
-                if (notMoved && (board.at(x, y - 2) == null)) {
+                if (y == 6 && (board.at(x, y - 2) == null)) {
                     result.add(new Position(x, y - 2));
                 }
             }
