@@ -13,6 +13,10 @@ public class Executor {
     }
 
     private SessionManager sessionManager = new SessionManager();
+    
+    public SessionManager getSessionManager() {
+        return this.sessionManager;
+    }
 
     public void execute(String command, Long id) {
 
