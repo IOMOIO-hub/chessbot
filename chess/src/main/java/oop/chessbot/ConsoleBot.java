@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class ConsoleBot implements Bot{
 
     public void listen() {
-        
+
         Executor executor = Executor.getInstance();
         executor.execute("/start", 0L);
 
@@ -17,6 +17,6 @@ public class ConsoleBot implements Bot{
         }
     }
     public void send(Long id, Message message) {
-        System.out.println(message.text);
+        System.out.println(message.getText());
     }
 }

@@ -9,11 +9,11 @@ public class GameTest {
     @Test
     public void kingTurnsTest() {
         
-        ArrayList<String> kingFirstTurns = new ArrayList();
+        ArrayList<String> kingFirstTurns = new ArrayList<String>();
         kingFirstTurns.add("f1");
         kingFirstTurns.add("e2");
 
-        ArrayList<String> kingSecondTurns = new ArrayList();
+        ArrayList<String> kingSecondTurns = new ArrayList<String>();
         kingSecondTurns.add("e1");
         kingSecondTurns.add("e2");
         
@@ -24,11 +24,11 @@ public class GameTest {
         game.select("f1");
         game.move("d3");
         
-        ArrayList<String> kingTurns = game.select("e1").keyboard;
+        ArrayList<String> kingTurns = game.select("e1").getKeyboard();
         assertEquals(kingFirstTurns, kingTurns);
         
         game.move("f1");
-        kingTurns = game.select("f1").keyboard;
+        kingTurns = game.select("f1").getKeyboard();
         assertEquals(kingSecondTurns, kingTurns);
     }
 }

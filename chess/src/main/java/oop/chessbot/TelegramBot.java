@@ -43,10 +43,10 @@ public class TelegramBot extends TelegramLongPollingBot implements Bot {
         }
     }
     public void send(Long id, Message message) {
-        SendMessage sendMessage = SendMessage.builder().chatId(id.toString()).text(message.text).build();
+        SendMessage sendMessage = SendMessage.builder().chatId(id.toString()).text(message.getText()).build();
         
-        if (message.keyboard != null)
-            sendMessage.setReplyMarkup(buildKeyboard(message.keyboard));
+        if (message.getKeyboard() != null)
+            sendMessage.setReplyMarkup(buildKeyboard(message.getKeyboard()));
 
         try {
             execute(sendMessage);
