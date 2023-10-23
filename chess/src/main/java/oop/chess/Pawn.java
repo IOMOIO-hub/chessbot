@@ -8,8 +8,6 @@ class Pawn extends Figure {
             super(color, position);
         }
         
-        private boolean notMoved = true;
-        
         public ArrayList<Position> possibleMoves(Board board) {
             ArrayList<Position> result = new ArrayList<Position>();
             Position position = this.getPosition();
