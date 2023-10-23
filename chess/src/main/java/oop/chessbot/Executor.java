@@ -12,11 +12,40 @@ public class Executor {
         return INSTANCE;
     }
 
+    private SessionManager sessionManager = new SessionManager();
+
     public void execute(String command, Long id) {
 
-        Session session = SessionManager.getSession(id);
+        Session session = sessionManager.getSession(id);
 
-        if (session.getStatus() == "game" && command.charAt(0) != '/') {
+        if (command.charAt(0) == '/') {
+            switch (command) {
+                case "/start": {
+                    session.send("Привет, добро пожаловать в шахматы!");
+                    session.send("Ваш номер сессии: " + id.toString());
+                    break;
+                }
+                case "/help": {
+                    session.send("/play - начать новую игру \n/help - список команд");
+                    break;
+                }
+                case "/play": {
+                    session.newGame();
+                    session.sendBoard();
+                    break;
+                }
+                default: {
+                    session.send("Неизвестная команда");
+                    break;
+                }
+            }
+        }
+        else {
+            if (session.getStatus() == "menu") {
+                session.send("Неизвестная команда");
+                return;
+            }
+
             switch (session.getGame().getStatus()) {
                 case "figureSelection": {
                     Message message = session.getGame().select(command);
@@ -32,28 +61,6 @@ public class Executor {
                     }
                     break;
                 }
-            }
-            return;
-        }
-
-        switch (command) {
-            case "/start": {
-                session.send("Привет, Добро пожаловать в шахматы!");
-                session.send("Ваш номер сессии: " + id.toString());
-                break;
-            }
-            case "/help": {
-                session.send("/play - начать новую игру \n/help - список команд");
-                break;
-            }
-            case "/play": {
-                session.newGame();
-                session.sendBoard();
-                break;
-            }
-            default: {
-                session.send("Неизвестная команда");
-                break;
             }
         }
     }

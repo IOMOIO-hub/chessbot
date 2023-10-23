@@ -16,7 +16,7 @@ public class AppTest {
         System.setOut(new PrintStream(outContent));
 
         SessionManager manager = new SessionManager();
-        SessionManager.createSession(0L, new ConsoleBot());
+        manager.createSession(0L, new ConsoleBot());
 
         Executor executor = Executor.getInstance();
         executor.execute("/help", 0L);

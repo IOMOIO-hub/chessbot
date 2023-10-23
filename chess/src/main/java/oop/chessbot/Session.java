@@ -7,7 +7,7 @@ public class Session {
     private Long id;
     private Bot bot;
 
-    private String status = "default";
+    private String status = "menu";
     private Game game;
 
     public Session(Long id, Bot bot) {
@@ -25,8 +25,8 @@ public class Session {
         return this.status;
     }
 
-    public void send(String str) {
-        this.bot.send(this.id, new Message(str));
+    public void send(String text) {
+        this.bot.send(this.id, new Message(text));
     }
     public void send(Message message) {
         this.bot.send(this.id, message);
