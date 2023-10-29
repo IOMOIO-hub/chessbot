@@ -16,7 +16,7 @@ class King extends Figure {
         
         for (int i = 0; i < 8; i++) {
             int newX = x + kingsTurns[i][0], newY = y + kingsTurns[i][1];
-            if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && (board.at(newX, newY) == null)) {
+            if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && ((board.at(newX, newY) == null) || (board.at(newX, newY).getColor() != this.getColor()))) {
                 result.add(new Position(newX, newY));
             }
         }
