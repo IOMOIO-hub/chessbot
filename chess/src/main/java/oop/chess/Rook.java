@@ -17,6 +17,8 @@ class Rook extends Figure {
                 result.add(new Position(tempX, y));
             }
             else{
+                if (board.at(tempX, y).getColor() != this.getColor())
+                    result.add(new Position(tempX, y));
                 break;
             }
         }
@@ -26,6 +28,8 @@ class Rook extends Figure {
                 result.add(new Position(x, tempY));
             }
             else{
+                if (board.at(x, tempY).getColor() != this.getColor())
+                    result.add(new Position(x, tempY));
                 break;
             }
         }
@@ -35,6 +39,8 @@ class Rook extends Figure {
                 result.add(new Position(tempX, y));
             }
             else{
+                if (board.at(tempX, y).getColor() != this.getColor())
+                    result.add(new Position(tempX, y));
                 break;
             }
         }
@@ -44,6 +50,8 @@ class Rook extends Figure {
                 result.add(new Position(x, tempY));
             }
             else{
+                if (board.at(x, tempY).getColor() != this.getColor())
+                    result.add(new Position(x, tempY));
                 break;
             }
         }
@@ -51,6 +59,9 @@ class Rook extends Figure {
         return result;
     }
     public char getType() {
-        return '♖';
+        if (this.getColor() == "White")
+            return '♖';
+        else
+            return '♜';
     }
 }
