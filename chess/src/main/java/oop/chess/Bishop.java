@@ -17,6 +17,8 @@ class Bishop extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
+                if (board.at(tempX, tempY).getColor() != this.getColor())
+                    result.add(new Position(tempX, tempY));
                 break;
             }
         }
@@ -26,6 +28,8 @@ class Bishop extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
+                if (board.at(tempX, tempY).getColor() != this.getColor())
+                    result.add(new Position(tempX, tempY));
                 break;
             }
         }
@@ -35,6 +39,8 @@ class Bishop extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
+                if (board.at(tempX, tempY).getColor() != this.getColor())
+                    result.add(new Position(tempX, tempY));
                 break;
             }
         }
@@ -44,6 +50,8 @@ class Bishop extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
+                if (board.at(tempX, tempY).getColor() != this.getColor())
+                    result.add(new Position(tempX, tempY));
                 break;
             }
         }
@@ -52,6 +60,9 @@ class Bishop extends Figure {
     }
     
     public char getType() {
-        return '♗';
+        if (this.getColor() == "White")
+            return '♗';
+        else
+            return '♝';
     }
 }
