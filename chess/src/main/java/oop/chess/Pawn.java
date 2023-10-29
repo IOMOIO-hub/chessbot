@@ -13,7 +13,7 @@ class Pawn extends Figure {
             Position position = this.getPosition();
             int x = position.getX(), y = position.getY();
             String pawnColor = this.getColor();
-            
+
             //white figures are placed at the the bottom and black at the top
             if (pawnColor == "White"){
                 if ((y < 7) && (board.at(x, y + 1) == null)) {
@@ -51,10 +51,10 @@ class Pawn extends Figure {
 
             return result;
         }
-        public char getSymbol() {
+        public String getSymbol() {
             if (this.getColor() == "White")
-                return '♙';
+                return "♙";
             else
-                return '♟';
+                return "**♙**";
         }
     }

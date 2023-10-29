@@ -105,10 +105,10 @@ class Queen extends Figure {
         return result;
     }
 
-    public char getSymbol() {
+    public String getSymbol() {
         if (this.getColor() == "White")
-            return '♕';
+            return "♕";
         else
-            return '♛';
+            return "♛";
     }
 }

@@ -23,6 +23,6 @@ abstract class Figure {
         return this.color;
     }
 
-    abstract public char getSymbol();
+    abstract public String getSymbol();
     abstract public ArrayList<Position> possibleMoves(Board board);
 }
