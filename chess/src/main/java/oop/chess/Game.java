@@ -6,26 +6,42 @@ import oop.chessbot.Message;
 public class Game {
     
     private Board board = new Board();
-    private String status = "figureSelection";
+    private String status;
+    private Player currentPlayer;
+    private Player firstPlayer = new Player("White");
+    private Player secondPlayer = new Player("Black");
 
     public Game() {
-
+        status = "figureSelection";
+        currentPlayer = firstPlayer;
     }
 
     public Board getBoard() {
         return this.board;
     }
+    
     public String getStatus() {
         return this.status;
+    }
+
+    private void changePlayer(){
+        if (currentPlayer.equals(firstPlayer))
+            currentPlayer = secondPlayer;
+        else
+            currentPlayer = firstPlayer;
     }
 
     private Figure selectedFigure;
 
     public ArrayList<Position> select(Position position) {
         Figure figure = board.at(position);
+
+        if (figure == null || figure.getColor() != currentPlayer.getColor())
+            return null;
+
         ArrayList<Position> possibleMoves = figure.possibleMoves(board);
         
-        if (figure == null || possibleMoves.size() == 0)
+        if (possibleMoves.size() == 0)
             return null;
 
         this.selectedFigure = figure;
@@ -54,6 +70,7 @@ public class Game {
                 board.set(destination, selectedFigure);
                 selectedFigure.setPosition(destination);
 
+                changePlayer();
                 status = "figureSelection";
                 return true;
             }

@@ -16,8 +16,15 @@ class Knight extends Figure {
             
             for (int i = 0; i < 8; i++){
                 int newX = x + knightsTurns[i][0], newY = y + knightsTurns[i][1];
-                if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && (board.at(newX, newY) == null)) {
-                    result.add(new Position(newX, newY));
+                if (this.getColor() == "White"){
+                    if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && ((board.at(newX, newY) == null) || (board.at(newX, newY).getColor() == "Black"))) {
+                        result.add(new Position(newX, newY));
+                    }
+                }
+                else{
+                    if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && ((board.at(newX, newY) == null) || (board.at(newX, newY).getColor() == "White"))) {
+                        result.add(new Position(newX, newY));
+                    }
                 }
             }
             
