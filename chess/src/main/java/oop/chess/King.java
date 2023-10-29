@@ -12,11 +12,12 @@ class King extends Figure {
         ArrayList<Position> result = new ArrayList<Position>();
         Position position = this.getPosition();
         int x = position.getX(), y = position.getY();
+        String kingColor = this.getColor();
         int[][] kingsTurns = {{1, -1}, {1, 0}, {1, 1}, {-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {0, -1}};
         
         for (int i = 0; i < 8; i++) {
             int newX = x + kingsTurns[i][0], newY = y + kingsTurns[i][1];
-            if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && ((board.at(newX, newY) == null) || (board.at(newX, newY).getColor() != this.getColor()))) {
+            if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && ((board.at(newX, newY) == null) || (board.at(newX, newY).getColor() != kingColor))) {
                 result.add(new Position(newX, newY));
             }
         }
@@ -25,6 +26,10 @@ class King extends Figure {
     }
 
     public char getSymbol() {
-        return '♔';
+        if (this.getColor() == "White")
+            return '♔';
+        else
+            return '♚';
     }
+
 }

@@ -12,12 +12,14 @@ class Bishop extends Figure {
         ArrayList<Position> result = new ArrayList<Position>();
         Position position = this.getPosition();
         int x = position.getX(), y = position.getY();
+        String bishopColor = this.getColor();
+
         for (int tempX = x + 1, tempY = y + 1; tempX < 8 && tempY < 8; tempX++, tempY++) {
             if (board.at(tempX, tempY) == null) {
                 result.add(new Position(tempX, tempY));
             }
             else{
-                if (board.at(tempX, tempY).getColor() != this.getColor())
+                if (board.at(tempX, tempY).getColor() != bishopColor)
                     result.add(new Position(tempX, tempY));
                 break;
             }
@@ -28,7 +30,7 @@ class Bishop extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
-                if (board.at(tempX, tempY).getColor() != this.getColor())
+                if (board.at(tempX, tempY).getColor() != bishopColor)
                     result.add(new Position(tempX, tempY));
                 break;
             }
@@ -39,7 +41,7 @@ class Bishop extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
-                if (board.at(tempX, tempY).getColor() != this.getColor())
+                if (board.at(tempX, tempY).getColor() != bishopColor)
                     result.add(new Position(tempX, tempY));
                 break;
             }
@@ -50,7 +52,7 @@ class Bishop extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
-                if (board.at(tempX, tempY).getColor() != this.getColor())
+                if (board.at(tempX, tempY).getColor() != bishopColor)
                     result.add(new Position(tempX, tempY));
                 break;
             }

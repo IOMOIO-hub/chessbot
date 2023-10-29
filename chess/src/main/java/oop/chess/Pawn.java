@@ -12,9 +12,10 @@ class Pawn extends Figure {
             ArrayList<Position> result = new ArrayList<Position>();
             Position position = this.getPosition();
             int x = position.getX(), y = position.getY();
-
+            String pawnColor = this.getColor();
+            
             //white figures are placed at the the bottom and black at the top
-            if (this.getColor() == "White"){
+            if (pawnColor == "White"){
                 if ((y < 7) && (board.at(x, y + 1) == null)) {
                     result.add(new Position(x, y + 1));
 
@@ -22,11 +23,11 @@ class Pawn extends Figure {
                         result.add(new Position(x, y + 2));
                     }
 
-                    if ((x > 0) && (board.at(x - 1, y + 1).getColor() != this.getColor())){
+                    if ((x > 0) && (board.at(x - 1, y + 1).getColor() != pawnColor)){
                         result.add(new Position(x - 1, y + 1));
                     }
 
-                    if ((x < 7) && (board.at(x + 1, y + 1).getColor() != this.getColor())){
+                    if ((x < 7) && (board.at(x + 1, y + 1).getColor() != pawnColor)){
                         result.add(new Position(x + 1, y + 1));
                     }
                     
@@ -39,11 +40,11 @@ class Pawn extends Figure {
                     result.add(new Position(x, y - 2));
                 }
 
-                if ((x > 0) && (board.at(x - 1, y - 1).getColor() != this.getColor())){
+                if ((x > 0) && (board.at(x - 1, y - 1).getColor() != pawnColor)){
                         result.add(new Position(x - 1, y - 1));
                 }
 
-                if ((x < 7) && (board.at(x + 1, y - 1).getColor() != this.getColor())){
+                if ((x < 7) && (board.at(x + 1, y - 1).getColor() != pawnColor)){
                     result.add(new Position(x + 1, y - 1));
                 }
             }
