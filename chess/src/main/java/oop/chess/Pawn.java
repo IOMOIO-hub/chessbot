@@ -16,38 +16,41 @@ class Pawn extends Figure {
 
             //white figures are placed at the the bottom and black at the top
             if (pawnColor == "White"){
-                if ((y < 7) && (board.at(x, y + 1) == null)) {
-                    result.add(new Position(x, y + 1));
+                if (y < 7) {
+                    if (board.at(x, y + 1) == null)
+                        result.add(new Position(x, y + 1));
 
                     if (y == 1 && (board.at(x, y + 2) == null)) {
                         result.add(new Position(x, y + 2));
                     }
 
-                    if ((x > 0) && (board.at(x - 1, y + 1).getColor() != pawnColor)){
+                    if ((x > 0) && (board.at(x - 1, y + 1) != null) && (board.at(x - 1, y + 1).getColor() != pawnColor)){
                         result.add(new Position(x - 1, y + 1));
                     }
 
-                    if ((x < 7) && (board.at(x + 1, y + 1).getColor() != pawnColor)){
+                    if ((x < 7) && (board.at(x + 1, y + 1) != null) && (board.at(x + 1, y + 1).getColor() != pawnColor)){
                         result.add(new Position(x + 1, y + 1));
                     }
                     
                 }
             }
-            else if ((y > 0) && (board.at(x, y - 1) == null)) {
-                result.add(new Position(x, y - 1));
+            else 
+                if (y > 0) {
+                    if (board.at(x, y - 1) == null)
+                        result.add(new Position(x, y - 1));
 
-                if (y == 6 && (board.at(x, y - 2) == null)) {
-                    result.add(new Position(x, y - 2));
-                }
+                    if (y == 6 && (board.at(x, y - 2) == null)) {
+                        result.add(new Position(x, y - 2));
+                    }
 
-                if ((x > 0) && (board.at(x - 1, y - 1).getColor() != pawnColor)){
-                        result.add(new Position(x - 1, y - 1));
-                }
+                    if ((x > 0) && (board.at(x - 1, y - 1) != null) && (board.at(x - 1, y - 1).getColor() != pawnColor)){
+                            result.add(new Position(x - 1, y - 1));
+                    }
 
-                if ((x < 7) && (board.at(x + 1, y - 1).getColor() != pawnColor)){
-                    result.add(new Position(x + 1, y - 1));
+                    if ((x < 7) && (board.at(x + 1, y - 1) != null) && (board.at(x + 1, y - 1).getColor() != pawnColor)){
+                        result.add(new Position(x + 1, y - 1));
+                    }
                 }
-            }
 
             return result;
         }
@@ -55,6 +58,6 @@ class Pawn extends Figure {
             if (this.getColor() == "White")
                 return "♙";
             else
-                return "**♙**";
+                return "b  ";
         }
     }

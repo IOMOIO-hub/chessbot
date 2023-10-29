@@ -19,7 +19,7 @@ public class Game {
     public Board getBoard() {
         return this.board;
     }
-    
+
     public String getStatus() {
         return this.status;
     }
@@ -36,12 +36,9 @@ public class Game {
     public ArrayList<Position> select(Position position) {
         Figure figure = board.at(position);
 
-        if (figure == null || figure.getColor() != currentPlayer.getColor())
-            return null;
-
         ArrayList<Position> possibleMoves = figure.possibleMoves(board);
         
-        if (possibleMoves.size() == 0)
+        if (figure == null || possibleMoves.size() == 0 || figure.getColor() != currentPlayer.getColor())
             return null;
 
         this.selectedFigure = figure;
@@ -69,9 +66,9 @@ public class Game {
                 board.set(selectedFigure.getPosition(), null);
                 board.set(destination, selectedFigure);
                 selectedFigure.setPosition(destination);
-
-                changePlayer();
+                
                 status = "figureSelection";
+                changePlayer();
                 return true;
             }
         }
