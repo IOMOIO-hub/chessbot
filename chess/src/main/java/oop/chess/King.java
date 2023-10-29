@@ -24,7 +24,7 @@ class King extends Figure {
         return result;
     }
 
-    public char getType() {
+    public char getSymbol() {
         return '♔';
     }
 }

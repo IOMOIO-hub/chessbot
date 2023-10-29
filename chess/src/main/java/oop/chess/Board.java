@@ -25,7 +25,7 @@ public class Board {
 
         for (int x = 0, y = 6; x < 8; x++)
             board[x][y] = new Pawn("Black", new Position(x, y));
-            
+
         board[0][7] = new Rook("Black", new Position(0, 0));
         board[1][7] = new Knight("Black", new Position(1, 0));
         board[2][7] = new Bishop("Black", new Position(2, 0));
@@ -65,7 +65,7 @@ public class Board {
                 if (currentFigure == null)
                     result += "⬚";
                 else
-                    result += currentFigure.getType();
+                    result += currentFigure.getSymbol();
             }
             result += "\n";
         }

@@ -59,7 +59,7 @@ class Bishop extends Figure {
         return result;
     }
     
-    public char getType() {
+    public char getSymbol() {
         if (this.getColor() == "White")
             return '♗';
         else

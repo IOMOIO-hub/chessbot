@@ -18,6 +18,8 @@ class Queen extends Figure {
                 result.add(new Position(tempX, y));
             }
             else{
+                if (board.at(tempX, y).getColor() != this.getColor())
+                    result.add(new Position(tempX, y));
                 break;
             }
         }
@@ -27,6 +29,8 @@ class Queen extends Figure {
                 result.add(new Position(x, tempY));
             }
             else{
+                if (board.at(x, tempY).getColor() != this.getColor())
+                    result.add(new Position(x, tempY));
                 break;
             }
         }
@@ -36,6 +40,8 @@ class Queen extends Figure {
                 result.add(new Position(tempX, y));
             }
             else{
+                if (board.at(tempX, y).getColor() != this.getColor())
+                    result.add(new Position(tempX, y));
                 break;
             }
         }
@@ -45,6 +51,8 @@ class Queen extends Figure {
                 result.add(new Position(x, tempY));
             }
             else{
+                if (board.at(x, tempY).getColor() != this.getColor())
+                    result.add(new Position(x, tempY));
                 break;
             }
         }
@@ -54,6 +62,8 @@ class Queen extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
+                if (board.at(tempX, tempY).getColor() != this.getColor())
+                    result.add(new Position(tempX, tempY));
                 break;
             }
         }
@@ -63,6 +73,8 @@ class Queen extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
+                if (board.at(tempX, tempY).getColor() != this.getColor())
+                    result.add(new Position(tempX, tempY));
                 break;
             }
         }
@@ -72,6 +84,8 @@ class Queen extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
+                if (board.at(tempX, tempY).getColor() != this.getColor())
+                    result.add(new Position(tempX, tempY));
                 break;
             }
         }
@@ -81,6 +95,8 @@ class Queen extends Figure {
                 result.add(new Position(tempX, tempY));
             }
             else{
+                if (board.at(tempX, tempY).getColor() != this.getColor())
+                    result.add(new Position(tempX, tempY));
                 break;
             }
         }
@@ -88,7 +104,10 @@ class Queen extends Figure {
         return result;
     }
 
-    public char getType() {
-        return '♕';
+    public char getSymbol() {
+        if (this.getColor() == "White")
+            return '♕';
+        else
+            return '♛';
     }
 }
