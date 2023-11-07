@@ -26,7 +26,7 @@ public class Board {
         for (int x = 0, y = 6; x < 8; x++)
             board[x][y] = new Pawn("Black", new Position(x, y));
         
-        board[0][7] = new Rook("Black", new Position(0, 0));
+        board[0][7] = new Rook("Black", new Position(0, 7));
         board[1][7] = new Knight("Black", new Position(1, 7));
         board[2][7] = new Bishop("Black", new Position(2, 7));
         board[3][7] = new Queen("Black", new Position(3, 7));
@@ -46,14 +46,14 @@ public class Board {
         return board[x][y];
     }
 
+    public void set(int x, int y, Figure figure) {
+        board[x][y] = figure;
+    }
     public void set(Position position, Figure figure) {
         int x = position.getX();
         int y = position.getY();
 
-        board[x][y] = figure;
-    }
-    public void set(int x, int y, Figure figure) {
-        board[x][y] = figure;
+        set(x, y, figure);
     }
 
     public String toString() {
@@ -61,11 +61,8 @@ public class Board {
         for (int y = 7; y > -1; y--) {
             result += ((Integer)(y + 1)).toString() + "  ";
             for (int x = 0; x < 8; x++) {
-                Figure currentFigure = board[x][y];
-                if (currentFigure == null)
-                    result += "⬚";
-                else
-                    result += currentFigure.getSymbol();
+                Figure currentFigure = this.at(x, y);
+                result += currentFigure == null ? "⬚" : currentFigure.getSymbol();
             }
             result += "\n";
         }
