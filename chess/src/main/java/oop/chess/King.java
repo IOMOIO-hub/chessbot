@@ -26,10 +26,14 @@ class King extends Figure {
     }
 
     public String getSymbol() {
-        if (this.getColor() == "White")
-            return "♔";
-        else
-            return "♚";
+        switch (this.getColor()) {
+            case "White":
+                return "♔";
+            case "Black":
+                return "♚";
+            default:
+                return "�";
+        }
     }
 
 }

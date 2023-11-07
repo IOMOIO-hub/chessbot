@@ -4,33 +4,36 @@ import java.util.ArrayList;
 
 class Knight extends Figure {
 
-        public Knight(String color, Position position) {
-            super(color, position);
-        }
+    public Knight(String color, Position position) {
+        super(color, position);
+    }
+    
+    public ArrayList<Position> possibleMoves(Board board) {
+        ArrayList<Position> result = new ArrayList<Position>();
+        Position position = this.getPosition();
+        int x = position.getX(), y = position.getY();
+        String knightColor = this.getColor();
+        int[][] knightsTurns = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
         
-        public ArrayList<Position> possibleMoves(Board board) {
-            ArrayList<Position> result = new ArrayList<Position>();
-            Position position = this.getPosition();
-            int x = position.getX(), y = position.getY();
-            String knightColor = this.getColor();
-            int[][] knightsTurns = {{1, 2}, {1, -2}, {-1, 2}, {-1, -2}, {2, 1}, {2, -1}, {-2, 1}, {-2, -1}};
-            
-            for (int i = 0; i < 8; i++){
-                int newX = x + knightsTurns[i][0], newY = y + knightsTurns[i][1];
-                if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && ((board.at(newX, newY) == null) || (board.at(newX, newY).getColor() != knightColor))) {
-                    result.add(new Position(newX, newY));
-                }
-                
+        for (int i = 0; i < 8; i++){
+            int newX = x + knightsTurns[i][0], newY = y + knightsTurns[i][1];
+            if ((newX >= 0) && (newX <= 7) && (newY >= 0) && (newY <= 7) && ((board.at(newX, newY) == null) || (board.at(newX, newY).getColor() != knightColor))) {
+                result.add(new Position(newX, newY));
             }
             
-            return result;
         }
-
-        public String getSymbol() {
-            if (this.getColor() == "White")
-                return "♘";
-            else
-                return "♞";
-        }
-
+        
+        return result;
     }
+
+    public String getSymbol() {
+        switch (this.getColor()) {
+            case "White":
+                return "♘";
+            case "Black":
+                return "♞";
+            default:
+                return "�";
+        }
+    }
+}
