@@ -23,6 +23,10 @@ abstract class Figure {
         return this.color;
     }
 
-    abstract public String getSymbol();
     abstract public ArrayList<Position> possibleMoves(Board board);
+    public boolean isSelectable(Board board) {
+        return possibleMoves(board).size() > 0;
+    }
+
+    abstract public String getSymbol();
 }
