@@ -59,6 +59,7 @@ public class Executor {
                 case "movementSelection": {
                     if (session.getGame().move(command)) {
                         session.sendBoard();
+                        session.sendTimers();
                     }
                     else {
                         session.send("Ход невозможен");

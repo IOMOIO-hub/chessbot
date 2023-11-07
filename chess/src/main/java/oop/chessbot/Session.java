@@ -34,6 +34,9 @@ public class Session {
     public void sendBoard() {
         this.bot.send(this.id, new Message(this.game.getBoard().toString()));
     }
+    public void sendTimers() {
+        this.bot.send(this.id, new Message(this.game.getTimers()));
+    }
 
     public void newGame() {
         this.game = new Game();

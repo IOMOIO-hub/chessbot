@@ -1,26 +1,26 @@
 package oop.chess;
 
 public class Player {
-    
+
     private String color;
-    private int time;
+    private Timer timer;
     
-    Player(String color){
+    Player(String color) {
         this.color = color;
-        time = 0;
+        timer = new Timer();
     }
 
-    public String getColor(){
+    public String getColor() {
         return this.color;
     }
-    public void setColor(String color){
+    public void setColor(String color) {
         this.color = color;
     }
 
-    public int getTime(){
-        return this.time;
+    public Timer getTimer() {
+        return this.timer;
     }
-    public void setTime(int time){
-        this.time = time;
+    public long getTime() {
+        return this.timer.getValue();
     }
 }

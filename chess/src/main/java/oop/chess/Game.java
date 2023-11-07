@@ -9,25 +9,30 @@ public class Game {
     
     private Board board = new Board();
     private String status;
-    private Player currentPlayer;
-    private Player firstPlayer = new Player("White");
-    private Player secondPlayer = new Player("Black");
+    private Player currentPlayer, firstPlayer, secondPlayer;
 
     public Game() {
-        status = "figureSelection";
-        currentPlayer = firstPlayer;
+        this.status = "figureSelection";
+        this.firstPlayer = new Player("White");
+        this.secondPlayer = new Player("Black");
+        this.currentPlayer = this.firstPlayer;
+        currentPlayer.getTimer().start();
     }
 
     public Board getBoard() {
         return this.board;
     }
-
     public String getStatus() {
         return this.status;
     }
+    public String getTimers() {
+        return "Игрок: " + firstPlayer.getTimer().toString() + "  Компьютер: " + secondPlayer.getTimer().toString();
+    }
 
     private void changePlayer() {
+        currentPlayer.getTimer().stop();
         currentPlayer = currentPlayer.equals(firstPlayer) ? secondPlayer : firstPlayer;
+        currentPlayer.getTimer().start();
     }
 
     private Figure selectedFigure;
@@ -102,7 +107,9 @@ public class Game {
 
         Random random = new Random();
         int index = random.nextInt(possibleFigures.size());
-        ArrayList<Position> possibleMoves = select(possibleFigures.get(index).getPosition());
+        Figure randomFigure = possibleFigures.get(index);
+        
+        ArrayList<Position> possibleMoves = select(randomFigure.getPosition());
         index = random.nextInt(possibleMoves.size());
 
         move(possibleMoves.get(index));
