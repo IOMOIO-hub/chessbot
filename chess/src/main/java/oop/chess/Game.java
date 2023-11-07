@@ -1,6 +1,8 @@
 package oop.chess;
 
 import java.util.ArrayList;
+import java.util.Random;
+
 import oop.chessbot.Message;
 
 public class Game {
@@ -24,11 +26,8 @@ public class Game {
         return this.status;
     }
 
-    private void changePlayer(){
-        if (currentPlayer.equals(firstPlayer))
-            currentPlayer = secondPlayer;
-        else
-            currentPlayer = firstPlayer;
+    private void changePlayer() {
+        currentPlayer = currentPlayer.equals(firstPlayer) ? secondPlayer : firstPlayer;
     }
 
     private Figure selectedFigure;
@@ -36,9 +35,12 @@ public class Game {
     public ArrayList<Position> select(Position position) {
         Figure figure = board.at(position);
 
+        if (figure == null || figure.getColor() != currentPlayer.getColor())
+            return null;
+
         ArrayList<Position> possibleMoves = figure.possibleMoves(board);
-        
-        if (figure == null || possibleMoves.size() == 0 || figure.getColor() != currentPlayer.getColor())
+
+        if (possibleMoves.size() == 0)
             return null;
 
         this.selectedFigure = figure;
@@ -48,9 +50,11 @@ public class Game {
     }
     public Message select(String str) {
         ArrayList<Position> possibleMoves = select(new Position(str));
+
         if (possibleMoves == null) {
             return new Message("Вы не можете ходить этой фигурой");
         }
+
         ArrayList<String> keyboard = new ArrayList<String>();
         for (Position move: possibleMoves)
             keyboard.add(move.toString());
@@ -68,7 +72,12 @@ public class Game {
                 selectedFigure.setPosition(destination);
                 
                 status = "figureSelection";
+
                 changePlayer();
+                if (currentPlayer.getColor() == "Black") {
+                    makeRandomMove();
+                }
+
                 return true;
             }
         }
@@ -76,5 +85,26 @@ public class Game {
     }
     public boolean move(String str) {
         return move(new Position(str));
+    }
+
+    private void makeRandomMove() {
+
+        ArrayList<Figure> possibleFigures = new ArrayList<Figure>();
+
+        for (int x = 0; x < 8; x++) {
+            for (int y = 0; y < 8; y++) {
+                Figure currentFigure = board.at(x, y);
+                if (currentFigure != null && currentFigure.getColor() == currentPlayer.getColor() && currentFigure.isSelectable(board)) {
+                    possibleFigures.add(currentFigure);
+                }
+            }
+        }
+
+        Random random = new Random();
+        int index = random.nextInt(possibleFigures.size());
+        ArrayList<Position> possibleMoves = select(possibleFigures.get(index).getPosition());
+        index = random.nextInt(possibleMoves.size());
+
+        move(possibleMoves.get(index));
     }
 }
