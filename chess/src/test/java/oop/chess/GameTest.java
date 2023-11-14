@@ -4,6 +4,7 @@ import org.junit.Test;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class GameTest {
     @Test
@@ -17,7 +18,7 @@ public class GameTest {
         kingSecondTurns.add("e1");
         kingSecondTurns.add("e2");
         
-        Game game = new Game();
+        Game game = new Game("randomComputer");
         
         game.select("e2");
         game.move("e4");
@@ -30,5 +31,26 @@ public class GameTest {
         game.move("f1");
         kingTurns = game.select("f1").getKeyboard();
         assertEquals(kingSecondTurns, kingTurns);
+    }
+
+    @Test
+    public void selectOpponentsFigureTest() {
+        
+        Game game = new Game("againstYourself");
+        assertEquals("Вы не можете ходить этой фигурой", game.select("a7").getText());
+    }
+
+    @Test
+    public void killOpponentsFigureTest() {
+        
+        Game game = new Game("againstYourself");
+
+        game.select("e2");
+        game.move("e4");
+        game.select("d7");
+        game.move("d5");
+        
+        game.select("e4");
+        assertTrue(game.move("d5"));
     }
 }
