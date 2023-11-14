@@ -8,14 +8,22 @@ import oop.chessbot.Message;
 public class Game {
     
     private Board board = new Board();
-    private String status;
     private Player currentPlayer, firstPlayer, secondPlayer;
+    private String mode, status;
 
     public Game() {
-        this.status = "figureSelection";
+        this.mode = "randomComputer";
+        reset();
+    }
+    public Game(String mode) {
+        this.mode = mode;
+        reset();
+    }
+    private void reset() {
         this.firstPlayer = new Player("White");
         this.secondPlayer = new Player("Black");
         this.currentPlayer = this.firstPlayer;
+        this.status = "figureSelection";
         currentPlayer.getTimer().start();
     }
 
@@ -79,7 +87,7 @@ public class Game {
                 status = "figureSelection";
 
                 changePlayer();
-                if (currentPlayer.getColor() == "Black") {
+                if (this.mode == "randomComputer" && currentPlayer.getColor() == "Black") {
                     makeRandomMove();
                 }
 
